@@ -4,6 +4,7 @@ import AllProductPage from './components/AllProductPage'
 import ProductDetailsPage from './components/ProductDetailsPage'
 import CreateProductPage from './components/CreateProductPage'
 import UpdateProductPage from './components/UpdateProductPage'
+import Navbar from './components/Navbar'
 
 
 
@@ -12,6 +13,7 @@ function App() {
 
 
         <BrowserRouter>
+            <Navbar />
             <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/products" element={<AllProductPage/>} />
