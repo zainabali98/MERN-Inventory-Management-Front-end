@@ -7,15 +7,24 @@ import { useParams } from 'react-router'
 function ProductDetailsPage() {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
+  const [error, setError] = useState(null)
 
 
   useEffect(() => {
     async function fetchProduct() {
-      const response = await getProductById(id)
-      setProduct(response.data)
+      try {
+        const response = await getProductById(id)
+        setProduct(response.data)
+      } catch (error) {
+        setError('Failed to fetch product')
+      }
     }
+
     fetchProduct()
   }, [id])
+  if (error) {
+    return <p>{error}</p>
+  }
   if (!product) {
     return <p>Loading product...</p>
   }
