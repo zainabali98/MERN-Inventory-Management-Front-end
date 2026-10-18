@@ -1,111 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
+  font-family: 'Press Start 2P', monospace;
+  color: #383838;
+  background: #38b0b0; /* Exact GBA Teal screen color from screenshot */
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  /* GBA Palette */
+  --gba-teal: #38b0b0;
+  --gba-dark-blue: #183848;
+  --gba-panel-bg: #f8f8f8;
+  --gba-red: #e83030;
+  --gba-gold: #f8b800;
+  --gba-green-bg: #38a058;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--gba-teal);
+  image-rendering: pixelated;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  background: var(--gba-teal);
+}
+
+/* MAIN CONTENT / SCREEN CONTAINER */
+.main-content {
+  width: min(1200px, 92%);
+  min-height: 400px;
+  margin: 40px auto;
+  padding: 30px;
+}
+
+/* NAVBAR - GBA Header Box Style */
+.navbar {
   display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+  background: var(--gba-dark-blue);
+  border-bottom: 4px solid #ffffff;
+  box-shadow: 0 4px 0 #102028;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+.navbar a {
+  color: #ffffff;
+  font-size: 11px;
+  padding: 10px 14px;
+  border: 2px solid transparent;
+  text-transform: uppercase;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+.navbar a:hover {
+  color: var(--gba-gold);
+  border: 2px solid var(--gba-gold);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* PRODUCTS PAGE */
+.products-page {
+  text-align: center;
+}
+
+.products-subtitle {
+  margin-bottom: 36px;
+  font-size: 10px;
+  color: #102028;
+  background: var(--gba-panel-bg);
+  display: inline-block;
+  padding: 10px 20px;
+  border: 3px solid var(--gba-dark-blue);
+  box-shadow: inset 0 0 0 2px #a8d0e0;
+}
+
+/* PRODUCT GRID */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+/* PRODUCT CARD - Styled like the item panels from GBA */
+.product-card {
+  background: var(--gba-panel-bg);
+  border: 4px solid var(--gba-dark-blue);
+  box-shadow: 
+    inset 0 0 0 2px #a8d0e0, /* Inner border line */
+    6px 6px 0px rgba(0, 0, 0, 0.3);
+  padding: 20px 16px;
+  text-align: left;
+  border-radius: 6px;
+  transition: transform 0.1s ease, border-color 0.1s ease;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gba-red); /* Red selection ring from the reference image */
+}
+
+.product-card h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  color: var(--gba-dark-blue);
+  margin-top: 0;
+}
+
+.product-card p {
+  font-size: 9px;
+  line-height: 1.8;
+  color: #484848;
+}
+
+/* Price tag formatted like Poké-dollars (¥ / ₱) */
+.product-card .product-price {
+  color: var(--gba-text-dark);
+  font-size: 12px;
+  margin: 16px 0;
+  font-weight: bold;
+}
+
+.product-card .product-price::before {
+  content: "¥ "; /* Poké Dollar Symbol */
+  color: var(--gba-red);
+}
+
+@media (max-width: 600px) {
+  .products-grid {
+    grid-template-columns: 1fr;
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+
+.product-card-actions {
+  display: flex;
+  gap: 50px; 
+  margin-top: 12px;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* Ensure the card is relative so absolute positioning works inside it */
+.product-card {
+  background: var(--gba-panel-bg);
+  border: 4px solid var(--gba-dark-blue);
+  box-shadow: 
+    inset 0 0 0 2px #a8d0e0,
+    6px 6px 0px rgba(0, 0, 0, 0.3);
+  padding: 20px 16px;
+  text-align: left;
+  border-radius: 6px;
+  position: relative; /* <--- Crucial for absolute positioning */
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+
+.card-badge {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 25px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.gba-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  background-color: #3888c8;
+  color: #ffffff;
+  padding: 6px 10px;
+  border: 2px solid #183848;
+  text-align: center;
+  flex: 1;
+  text-decoration: none; /* Keeps links from having underlines */
+  display: inline-block; /* Ensures padding & borders render cleanly */
+  box-shadow: inset -2px -2px 0px #185078, inset 2px 2px 0px #78b0e8;
 }

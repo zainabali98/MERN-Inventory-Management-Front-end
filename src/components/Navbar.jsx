@@ -1,12 +1,14 @@
+
 import { Link } from 'react-router'
 
 function Navbar() {
     return (
-        <nav>
+        <nav className="navbar">
             <Link to="/">Home</Link>
             <Link to="/products">All Products</Link>
             <Link to="/products/create">Add Product</Link>
-        </nav>)
+        </nav>
+    )
 }
 
 export default Navbar

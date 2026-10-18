@@ -48,59 +48,77 @@ function UpdateProductPage() {
   }
 
   return (
-  <div>
-    {error && <p>{error}</p>}
+    <div className="form-page">
+      <div className="gba-clerk-banner">
+        <p>Need to adjust item details? Update the registry below.</p>
+      </div>
 
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Title</label>
-      <input
-        type="text"
-        id="title"
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-      />
+      <div className="form-container">
+        {error && <p className="form-error">{error}</p>}
 
-      <label htmlFor="description">Description</label>
-      <input
-        type="text"
-        id="description"
-        name="description"
-        value={formData.description}
-        onChange={handleChange}
-      />
+        <form onSubmit={handleSubmit} className="gba-form">
+          <div className="form-group">
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+            />
+          </div>
 
-      <label htmlFor="category">Category</label>
-      <input
-        type="text"
-        id="category"
-        name="category"
-        value={formData.category}
-        onChange={handleChange}
-      />
+          <div className="form-group">
+            <label htmlFor="description">Description</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            />
+          </div>
 
-      <label htmlFor="price">Price</label>
-      <input
-        type="number"
-        id="price"
-        name="price"
-        value={formData.price}
-        onChange={handleChange}
-      />
+          <div className="form-group">
+            <label htmlFor="category">Category</label>
+            <input
+              type="text"
+              id="category"
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+            />
+          </div>
 
-      <label htmlFor="quantity">Quantity</label>
-      <input
-        type="number"
-        id="quantity"
-        name="quantity"
-        value={formData.quantity}
-        onChange={handleChange}
-      />
+          <div className="form-group">
+            <label htmlFor="price">Price</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+            />
+          </div>
 
-      <button type="submit">Update Product</button>
-    </form>
-  </div>
-)
+          <div className="form-group">
+            <label htmlFor="quantity">Quantity</label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              value={formData.quantity}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-actions">
+            <button type="submit" className="gba-btn primary">Update Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
 }
 
 export default UpdateProductPage
