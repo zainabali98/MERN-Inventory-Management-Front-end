@@ -12,7 +12,7 @@ function CreateProductPage() {
     price: '',
     quantity: ''
   })
-  
+  const [error, setError] = useState(null)
 
 
   function handleChange(event) {
@@ -22,15 +22,22 @@ function CreateProductPage() {
     })
   }
 
-  async function handleSubmit(event){
+  async function handleSubmit(event) {
     event.preventDefault()
+    try {
 
-    await createProduct(formData)
-    navigate('/products')
+      await createProduct(formData)
+      navigate('/products')
+
+    }
+    catch (error) {
+      setError('Failed to create product')
+    }
 
   }
   return (
     <div>
+      {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <input
@@ -77,7 +84,7 @@ function CreateProductPage() {
           onChange={handleChange}
         />
 
-        <button  type="submit">Create Product</button>
+        <button type="submit">Create Product</button>
       </form>
     </div>
   )
